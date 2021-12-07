@@ -7,14 +7,14 @@
 
 const int ledInformativo = 13;
 const int inBtEnter = 9;
-const int inBtVoltar = 10;
+const int inBtVoltar = 12;
 const int inBtMais = 11;
-const int inBtMenos = 12;
-const int outReleLampada01;
-const int outReleLampada02;
-const int outReleBomba01;
-const int outReleBomba02;
-const int outReleBomba03;
+const int inBtMenos = 10;
+const int outReleLampada01 = 3;
+const int outReleLampada02 = 4;
+const int outReleBomba01 = 5;
+const int outReleBomba02 = 8;
+const int outReleBomba03 = 7;
 const int inLDR = A3;
 
 // selecione um sensor, retirando o comentário - duas barras
@@ -28,6 +28,7 @@ uint32_t delayMS;                                  // variável para atraso no t
 //Inicializa o display no endereco 0x27
 LiquidCrystal_I2C lcd(0x27,16,2);
 
+//declarando e setando variaveis
 float tempAtual = 0;
 float umidAtual = 0;
 int   ldrAtual = 0;
@@ -112,7 +113,7 @@ void setup() {
   lcd.setBacklight(HIGH);
 }
 
-void verificaEntradas () {
+void verificaEntradasSaidas () {
   ldrAtual = analogRead(inLDR);
   btEnter = digitalRead(inBtEnter);
   btVoltar = digitalRead(inBtVoltar);
@@ -216,9 +217,9 @@ void exibeLCD () {
 }
 
 void loop() {
-  verificaEntradas ();
+  verificaEntradasSaidas ();
   verificaUmidTemp ();
-    exibeLCD ();
+   exibeLCD ();
   
 
   Serial.println();
