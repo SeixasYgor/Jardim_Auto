@@ -81,7 +81,7 @@ void setup() {
   
   lcd.clear();
   lcd.setCursor(0,0);
-  //lcd.print("Groow Autonomo!!");
+  //lcd.print("Jardim Autonomo!!");
   delay(3000);
 
   Serial.println("Usando o Sensor DHT");
