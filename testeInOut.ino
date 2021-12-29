@@ -5,6 +5,7 @@
 #include <DHT.h>
 #include <DHT_U.h>
 
+//Definindo portas
 const int ledInformativo = 13;
 const int inBtEnter = 9;
 const int inBtVoltar = 12;
@@ -28,7 +29,7 @@ uint32_t delayMS;                                  // variável para atraso no t
 //Inicializa o display no endereco 0x27
 LiquidCrystal_I2C lcd(0x27,16,2);
 
-//declarando e setando variaveis
+//Declarando e setando variaveis
 float tempAtual = 0;
 float umidAtual = 0;
 int   ldrAtual = 0;
@@ -53,35 +54,27 @@ void setup() {
   lcd.print("Ola!!!");
   lcd.setCursor(0,1);
   lcd.print("Iniciando");
-  delay(1000);
-  lcd.print(".");
-  delay(1000);
-  lcd.print(".");
-  delay(1000);
-  lcd.print(".");
-  delay(1000);
-  lcd.print(".");
-  delay(1000);
-  lcd.print(".");
-  delay(1000);
-  
+  for (int i = 0; i < 6; i++) {
+    delay(500);
+    lcd.print(".");
+  }
+    
   //Definindo Portas i/o
   pinMode(ledInformativo, OUTPUT);
-  pinMode(inBtEnter, INPUT_PULLUP); // Configura pino 13 como entrada e habilita pull up interno;
+  pinMode(inBtEnter, INPUT_PULLUP);
   pinMode(inBtVoltar, INPUT_PULLUP);
   pinMode(inBtMais, INPUT_PULLUP);
   pinMode(inBtMenos, INPUT_PULLUP);
   pinMode(inLDR, INPUT);
   
-
   //Inicialização da comunicação serial e DHT
   Serial.begin(9600);
   dht.begin();     
 
   
-  lcd.clear();
+  lcd.clear();        
   lcd.setCursor(0,0);
-  //lcd.print("Jardim Autonomo!!");
+  
   delay(3000);
 
   Serial.println("Usando o Sensor DHT");
@@ -104,12 +97,11 @@ void setup() {
   Serial.println("------------------------------------");
   delayMS = sensor.min_delay / 1000;            // define o atraso entre as leituras
 
-
-
-  
+  //Desliga o LCD
   lcd.setBacklight(LOW);
   delay(5000);
   lcd.clear();
+  //Liga novamente
   lcd.setBacklight(HIGH);
 }
 
