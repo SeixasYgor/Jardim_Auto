@@ -38,10 +38,10 @@ bool  btVoltar = false;
 bool  btMais = false;
 bool  btMenos = false;
 
-int Menu;
+int Menu = 0;
 
-int aux1;
-int aux2;
+int aux1 = 0;
+int aux2 = 0;
 String auxString;
 
 void setup() {
@@ -51,9 +51,9 @@ void setup() {
   //Inicialização para Usuario
   lcd.setBacklight(HIGH);
   lcd.setCursor(0,0);
-  lcd.print("Ola!!!");
+  lcd.print("Carregando");
   lcd.setCursor(0,1);
-  lcd.print("Iniciando");
+  lcd.print("Programa");
   for (int i = 0; i < 6; i++) {
     delay(500);
     lcd.print(".");
@@ -71,12 +71,12 @@ void setup() {
   Serial.begin(9600);
   dht.begin();     
 
-  
+  //Limpeza do LCD
   lcd.clear();        
   lcd.setCursor(0,0);
   
   delay(3000);
-
+  /*
   Serial.println("Usando o Sensor DHT");
   sensor_t sensor;
   dht.temperature().getSensor(&sensor);           // imprime os detalhes do Sensor de Temperatura
@@ -96,10 +96,11 @@ void setup() {
   Serial.print  ("Resolucao:   "); Serial.print(sensor.resolution); Serial.println("%");
   Serial.println("------------------------------------");
   delayMS = sensor.min_delay / 1000;            // define o atraso entre as leituras
-
+  */
+  
   //Desliga o LCD
   lcd.setBacklight(LOW);
-  delay(5000);
+  delay(2000);
   lcd.clear();
   //Liga novamente
   lcd.setBacklight(HIGH);
@@ -112,8 +113,18 @@ void verificaEntradasSaidas () {
   btMais = digitalRead(inBtMais);
   btMenos = digitalRead(inBtMenos);
 
+  do {
+    //Implementar controle de tempo usando millis()
+    Serial.println("Favor pressionar o botão ENTER.");
+    digitalWrite(ledInformativo, LOW);
+    if (!btVoltar) {
+      break;
+     }
+  } while (!btEnter);
 
-
+  
+  
+  
   //Area para testar variaveis
   if (digitalRead(inBtEnter) == LOW) { // Botão Pressionado;
     Serial.println("Botao Enter Pressionado");
