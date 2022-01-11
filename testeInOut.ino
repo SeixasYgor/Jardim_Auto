@@ -112,16 +112,32 @@ void verificaEntradasSaidas () {
   btVoltar = digitalRead(inBtVoltar);
   btMais = digitalRead(inBtMais);
   btMenos = digitalRead(inBtMenos);
-
+  
+  //Teste do botão ENTER e VOLTAR
   do {
-    //Implementar controle de tempo usando millis()
+    //Implementar controle de tempo usando millis() para não travar código.
     Serial.println("Favor pressionar o botão ENTER.");
     digitalWrite(ledInformativo, LOW);
+    //
     if (!btVoltar) {
+      for (aux1 = 0; aux1 <= 5; aux1 ++) {
+        Serial.println("Botão VOLTAR PRESSIONADO.");
+        digitalWrite(ledInformativo, HIGH);
+        delay(500);
+        digitalWrite(ledInformativo, LOW);
+        delay(500);
+      }
       break;
      }
   } while (!btEnter);
-
+  for (aux1 = 0; aux1 <= 5; aux1 ++) {
+    Serial.println("Botão ENTER PRESSIONADO.");
+    digitalWrite(ledInformativo, HIGH);
+    delay(500);
+    digitalWrite(ledInformativo, LOW);
+    delay(500);
+  }
+  
   
   
   
