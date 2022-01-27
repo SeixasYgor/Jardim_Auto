@@ -18,7 +18,7 @@ const int outReleBomba02 = 8;
 const int outReleBomba03 = 7;
 const int inLDR = A3;
 
-// selecione um sensor, retirando o comentário - duas barras
+//Selecione um sensor, retirando o comentário - duas barras
 #define DHTTYPE    DHT11                           // Sensor DHT11
 //#define DHTTYPE      DHT22                       // Sensor DHT22 ou AM2302
 
